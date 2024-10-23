@@ -1,0 +1,13 @@
+name: Prevent Push to Main
+
+on: [push]
+
+jobs:
+  prevent-push:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Fail Push
+        run: |
+          echo "Pushes to the main branch are not allowed."
+          exit 1
